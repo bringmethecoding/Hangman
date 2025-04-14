@@ -14,7 +14,7 @@ namespace Hangman
         private char[] maskedWord;
         public Hangman(string word)
         {
-            this.word = word;
+            this.word = word.ToUpper();
             maskedWord = new string('_', word.Length).ToCharArray();
         }
 
@@ -22,7 +22,7 @@ namespace Hangman
         public char GuessedLetter
         {
             get => guessedLetter; 
-            set => guessedLetter = value;
+            set => guessedLetter = Char.ToUpper(value);
         }
 
         public bool IsLetterInWord()
