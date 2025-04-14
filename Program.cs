@@ -11,11 +11,14 @@
 
             Console.Write($"{playerOne}, choose a word: ");
             string word = Console.ReadLine();
+            Console.WriteLine('\n');
 
             Hangman hangman = new Hangman(word);
 
             do
             {
+                Console.WriteLine($"Incorrect guesses: {hangman.GetIncorrectGuessCount()}/{hangman.GetGuesses()}");
+
                 hangman.GetMaskedWord();
                 string input;
                 do
@@ -30,6 +33,8 @@
                 {
                     hangman.UncoverLetters();
                 }
+
+                Console.WriteLine('\n');
 
             } while (!hangman.IsGameFinished());
 

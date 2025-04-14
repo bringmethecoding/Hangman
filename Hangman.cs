@@ -39,16 +39,16 @@ namespace Hangman
                 if (guessedLetter.Equals(word[i])) {  return true; }
             }
 
-            numberOfIncorrectGuesses++;
+            incorrectGuessCount++;
             return false;
         }
 
         private const int guesses = 8;
-        private int numberOfIncorrectGuesses = 0;
+        private int incorrectGuessCount = 0;
 
         public bool IsGameFinished()
         {
-            if (numberOfIncorrectGuesses >= guesses) { return true; }
+            if (incorrectGuessCount >= guesses) { return true; }
 
             if (IsWordGuessed()) { return true; }
 
@@ -80,5 +80,9 @@ namespace Hangman
         {
             Console.WriteLine(maskedWord);
         }
+
+        public int GetIncorrectGuessCount() => incorrectGuessCount;
+
+        public int GetGuesses() => guesses;
     }
 }
