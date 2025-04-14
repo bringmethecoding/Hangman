@@ -14,15 +14,22 @@ namespace Hangman
         private char[] maskedWord;
         public Hangman(string word)
         {
-            this.word = word.ToUpper();
+            this.word = word.ToLower();
             maskedWord = new string('_', word.Length).ToCharArray();
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (word[i] == ' ') 
+                { 
+                    maskedWord[i] = '-';
+                }
+            }
         }
 
         private char guessedLetter;
         public char GuessedLetter
         {
             get => guessedLetter; 
-            set => guessedLetter = Char.ToUpper(value);
+            set => guessedLetter = Char.ToLower(value);
         }
 
         public bool IsLetterInWord()
