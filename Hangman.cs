@@ -19,7 +19,7 @@ namespace Hangman
         }
 
         private char guessedLetter;
-        public string GuessedLetter { get; set; }
+        public char GuessedLetter { get; set; }
 
         public bool IsLetterInWord()
         {
@@ -28,15 +28,16 @@ namespace Hangman
                 if (guessedLetter.Equals(word[i])) {  return true; }
             }
 
+            numberOfIncorrectGuesses++;
             return false;
         }
 
         private const int guesses = 8;
-        private int numberOfGuesses = 0;
+        private int numberOfIncorrectGuesses = 0;
 
         public bool IsGameFinished()
         {
-            if (numberOfGuesses >= guesses) { return true; }
+            if (numberOfIncorrectGuesses >= guesses) { return true; }
 
             if (IsWordGuessed()) { return true; }
 
