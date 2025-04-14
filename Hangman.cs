@@ -18,14 +18,14 @@ namespace Hangman
             maskedWord = new string('_', word.Length).ToCharArray();
         }
 
-        private string letter;
-        public string Letter { get; set; }
+        private char guessedLetter;
+        public string GuessedLetter { get; set; }
 
         public bool IsLetterInWord()
         {
             for (int i = 0; i < word.Length; i++)
             {
-                if (letter.Equals(word[i])) {  return true; }
+                if (guessedLetter.Equals(word[i])) {  return true; }
             }
 
             return false;
@@ -51,6 +51,17 @@ namespace Hangman
             }
 
             return true;
+        }
+
+        public void UncoverLetters()
+        {
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (word[i].Equals(guessedLetter))
+                {
+                    maskedWord[i] = guessedLetter;
+                }    
+            }
         }
     }
 }
