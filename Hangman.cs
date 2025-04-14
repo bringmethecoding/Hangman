@@ -11,7 +11,7 @@ namespace Hangman
     internal class Hangman
     {
         private string word;
-        char[] maskedWord;
+        private char[] maskedWord;
         public Hangman(string word)
         {
             this.word = word;
@@ -19,7 +19,11 @@ namespace Hangman
         }
 
         private char guessedLetter;
-        public char GuessedLetter { get; set; }
+        public char GuessedLetter
+        {
+            get => guessedLetter; 
+            set => guessedLetter = value;
+        }
 
         public bool IsLetterInWord()
         {
@@ -63,6 +67,11 @@ namespace Hangman
                     maskedWord[i] = guessedLetter;
                 }    
             }
+        }
+
+        public void GetMaskedWord()
+        {
+            Console.WriteLine(maskedWord);
         }
     }
 }
