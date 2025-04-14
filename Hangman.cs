@@ -11,7 +11,11 @@ namespace Hangman
     internal class Hangman
     {
         private string word;
-        public string Word { get; set; }
+        public Hangman(string word)
+        {
+            this.word = word;
+            char[] maskedWord = new string('_', word.Length).ToCharArray();
+        }
 
         private string letter;
         public string Letter { get; set; }
@@ -33,8 +37,13 @@ namespace Hangman
         {
             if (numberOfGuesses >= guesses) { return true; }
 
-            if (isWordGuessed()) { return true; }
+            if (IsWordGuessed()) { return true; }
 
+            return false;
+        }
+
+        public bool IsWordGuessed()
+        {
             return false;
         }
     }
