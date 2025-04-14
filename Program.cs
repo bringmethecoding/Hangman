@@ -17,8 +17,14 @@
             do
             {
                 hangman.GetMaskedWord();
-                Console.Write($"{playerTwo}, guess a letter: ");
-                hangman.GuessedLetter = char.Parse(Console.ReadLine());
+                string input;
+                do
+                {
+                    Console.Write($"{playerTwo}, guess a letter: ");
+                    input = Console.ReadLine();
+                } while (input.Length != 1 || !Char.IsLetter(input[0]));
+                hangman.GuessedLetter = input[0];
+
 
                 if (hangman.IsLetterInWord())
                 {
