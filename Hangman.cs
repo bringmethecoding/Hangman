@@ -18,9 +18,9 @@ namespace Hangman
             maskedWord = new string('_', word.Length).ToCharArray();
             for (int i = 0; i < word.Length; i++)
             {
-                if (word[i] == ' ') 
+                if (!Char.IsLetter(word[i])) 
                 { 
-                    maskedWord[i] = '-';
+                    maskedWord[i] = word[i];
                 }
             }
         }
