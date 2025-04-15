@@ -11,7 +11,7 @@
 
             Console.Write($"{playerOne}, choose a word: ");
             string word = Console.ReadLine();
-            Console.WriteLine('\n');
+            Console.Clear();
 
             Hangman hangman = new Hangman(word);
 
@@ -28,23 +28,25 @@
                 } while (input.Length != 1 || !Char.IsLetter(input[0]));
                 hangman.GuessedLetter = input[0];
 
-
                 if (hangman.IsLetterInWord())
                 {
                     hangman.UncoverLetters();
                 }
 
-                Console.WriteLine('\n');
+                if (hangman.GetIncorrectGuessCount() < 8) 
+                {
+                    Console.Clear();
+                }
 
             } while (!hangman.IsGameFinished());
 
             if (hangman.IsWordGuessed())
             {
-                Console.WriteLine($"You won, {playerTwo}!");
+                Console.WriteLine($"\nYou won, {playerTwo}!");
             }
             else
             {
-                Console.WriteLine($"You lost, {playerTwo}");
+                Console.WriteLine($"\nYou lost, {playerTwo}");
             }
         }
     }
