@@ -89,10 +89,7 @@ namespace Hangman
             }
         }
 
-        public void GetMaskedWord()
-        {
-            Console.WriteLine(maskedWord);
-        }
+        public char[] GetMaskedWord() => maskedWord;
 
         public int GetIncorrectGuessCount() => incorrectGuessCount;
 

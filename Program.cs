@@ -30,7 +30,7 @@
                 }
                 Console.WriteLine();
 
-                hangman.GetMaskedWord();
+                Console.WriteLine(hangman.GetMaskedWord());
                 string input;
                 do
                 {
