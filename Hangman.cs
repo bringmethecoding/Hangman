@@ -43,6 +43,19 @@ namespace Hangman
             return false;
         }
 
+        public char[] usedLetters = new string('0', 26).ToCharArray();
+
+        public bool WasLetterGuessed(char input)
+        {
+            // input is put through ToLower()
+            int letter = input - 97;
+
+            if (usedLetters[letter] == '1') { return true; }
+
+            usedLetters[letter] = '1';
+            return false;
+        }
+
         private const int guesses = 8;
         private int incorrectGuessCount = 0;
 
@@ -84,5 +97,7 @@ namespace Hangman
         public int GetIncorrectGuessCount() => incorrectGuessCount;
 
         public int GetGuesses() => guesses;
+
+        public char[] GetUsedLetters() => usedLetters;
     }
 }

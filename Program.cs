@@ -18,14 +18,25 @@
             do
             {
                 Console.WriteLine($"Incorrect guesses: {hangman.GetIncorrectGuessCount()}/{hangman.GetGuesses()}");
+                Console.Write("Letters guessed: ");
+                char[] guessedLetters = hangman.GetUsedLetters();
+                for (int i = 0; i < 26; i++)
+                {
+                    if (guessedLetters[i] == '1')
+                    {
+                        Console.Write((char)(i + 97));
+                        Console.Write(' ');
+                    }
+                }
+                Console.WriteLine();
 
                 hangman.GetMaskedWord();
                 string input;
                 do
                 {
                     Console.Write($"{playerTwo}, guess a letter: ");
-                    input = Console.ReadLine();
-                } while (input.Length != 1 || !Char.IsLetter(input[0]));
+                    input = Console.ReadLine().ToLower();
+                } while (input.Length != 1 || !Char.IsLetter(input[0]) || hangman.WasLetterGuessed(input[0]));
                 hangman.GuessedLetter = input[0];
 
                 if (hangman.IsLetterInWord())
@@ -33,7 +44,7 @@
                     hangman.UncoverLetters();
                 }
 
-                if (hangman.GetIncorrectGuessCount() < 8) 
+                if (!hangman.IsGameFinished()) 
                 {
                     Console.Clear();
                 }
