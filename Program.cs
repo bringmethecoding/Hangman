@@ -11,6 +11,9 @@
             string playerTwo = Console.ReadLine();
             string currentGuesser = playerTwo;
 
+            int playerOneScore = 0;
+            int playerTwoScore = 0;
+
             do
             {
                 Console.Write($"{currentPlayer}, choose a word: ");
@@ -57,13 +60,37 @@
 
                 if (hangman.IsWordGuessed())
                 {
-                    Console.WriteLine($"\nYou won, {currentGuesser}!");
+                    Console.WriteLine($"\nYou scored, {currentGuesser}!");
+                    
+                    if (currentGuesser.Equals(playerOne)) { playerOneScore++; }
+                    else { playerTwoScore++; }
                 }
                 else
                 {
-                    Console.WriteLine($"\nYou lost, {currentGuesser}");
+                    Console.WriteLine($"\n{currentPlayer} scored!");
+                    if (currentGuesser.Equals(playerOne)) { playerTwoScore++; }
+                    else { playerOneScore++; }
                 }
+
+                Console.WriteLine("\nCurrent score:");
+                Console.WriteLine($"{playerOne}: {playerOneScore}");
+                Console.WriteLine($"{playerTwo}: {playerTwoScore}");
+
             } while (playAgain(ref currentPlayer, ref currentGuesser));
+
+            Console.Clear();
+            if (playerOneScore > playerTwoScore)
+            {
+                Console.WriteLine($"{playerOne} won by {playerOneScore - playerTwoScore} point(s)!");
+            }
+            else if (playerOneScore < playerTwoScore) 
+            {
+                Console.WriteLine($"{playerTwo} won by {playerTwoScore - playerOneScore} point(s)!");
+            }
+            else
+            {
+                Console.WriteLine($"You tied with {playerOneScore} point(s)!");
+            }
         }
 
         static bool playAgain(ref string player, ref string guesser)
